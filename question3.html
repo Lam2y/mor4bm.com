@@ -1,0 +1,445 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 3</title>
+    <style>
+        /* General styling for the entire page */
+        body {
+            background: url('https://png.pngtree.com/thumb_back/fh260/background/20230329/pngtree-desert-thirsty-tropical-arid-regions-image_2121012.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for the main title section */
+        .title {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Styling for the introductory text */
+        .intro-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: yellow;
+            text-shadow: rgb(0, 255, 0) 10px 0 10px;
+            margin: 0;
+            animation: 1s ease-in-out 0s 1 slideInFromLeft;
+        }
+
+        /* Animation for the introductory text */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Styling for the button container */
+        .button-container {
+            position: fixed;
+            top: 20px;
+            right: 0px;
+        }
+
+        /* Styling for buttons */
+        .button-container button {
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* Styling for the main content box */
+        .content-box {
+            text-align: justify;
+            border: 10px solid #D2691E;
+            border-radius: 20px;
+            background-color: #FAEBD7;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Styling for the quote text */
+        .quote-text {
+            font-size: 2rem;
+            color: yellow;
+            margin-top: 2px;
+            font-weight: bold;
+            text-shadow: #0000FF 1px 0 20px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        /* Animation for the bouncing quote text */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Styling for word categories box */
+        .word-categories {
+            border: 10px solid #0000FF;
+            border-radius: 20px;
+            background: linear-gradient(to bottom, #00FFFF, #0000FF);
+            max-width: 500px;
+            margin: 20px auto;
+            color: #fff;
+            font-size: 30px;
+            padding: 20px;
+        }
+
+        /* Styling for the table */
+        table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Styling for table headers and cells */
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.2em;
+        }
+
+        th {
+            background-color: #00FFFF;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        td {
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        /* Hover effect for table rows */
+        tbody tr:hover {
+            background-color: #e0f7fa;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Styling for text input fields */
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Styling for main containers */
+        .main-container {
+            text-align: center;
+        }
+
+        .main-container:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        /* Styling for buttons and images */
+        .main-container button, img {
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+        }
+
+        /* Styling for the bottom navigation */
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .bottom button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            display: inline-block;
+            margin-right: 10px;
+            background-color: transparent;
+            font-size: 100px;
+        }
+
+        /* Styling for the overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        /* Styling for the sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 300px;
+            height: 100%;
+            background-color: rgba(173, 216, 230, 0.9);
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            transition: right 0.3s ease-in-out;
+            overflow-y: auto; /* Add scrollbar for content overflow */
+        }
+
+        .sidebar h1 {
+            margin-bottom: 20px;
+            color: #00FFFF;
+            text-align: center;
+            font-size: 1.8em; /* Increase title font size */
+            font-family: 'Georgia', serif; /* Change title font family */
+            text-transform: uppercase; /* Uppercase title text */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+            font-size: 1.5em; /* Increase list item font size */
+            font-family: 'Cursive', sans-serif; /* Change list item font family */
+            text-transform: capitalize; /* Capitalize list item text */
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            font-weight: bold; /* Make links bold */
+        }
+
+        .sidebar a:hover {
+            color: #00FFFF;
+            font-style: italic; /* Italicize links on hover */
+        }
+
+        .title-button {
+            position: fixed;
+            top: 20px;
+            left: 0px;
+        }
+
+        .title-button button {
+             background: none;
+             border: none;
+             cursor: pointer;
+             padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-button">
+        <button onclick="window.location.href='./question_set.html'"><img src="pngtree-home-button-ui-ux-png-image_6322239.png" alt="Home button"></button>
+    </div>
+    <!-- Main title section -->
+    <div class="title">
+        <p class="intro-text">Jom kita menjawab soalan morfologi tersebut</p>
+        <!-- Button container for help and sidebar -->
+        <div class="button-container">
+            <button onclick="openSidebar()">
+                <img src="./Glossy_3d_blue_questionmark-removebg-preview.png" alt="Question Mark">
+            </button>
+            <!-- Overlay for the sidebar -->
+            <div class="overlay" onclick="closeSidebar()"></div>
+            <!-- Sidebar for help links -->
+            <div class="sidebar">
+                <h1>Help</h1>
+                <ul>
+                    <li><a href="https://galaxian0212computerscience.blogspot.com/2023/10/kata-tunggal.html">Kata Majmuk Mantap</a></li>
+                </ul>
+            </div>
+        </div>
+                <!-- Return to Main Page button -->
+                <div class="title-button">
+                    <button onclick="window.location.href='./question_set.html'">
+                            <img src="pngtree-home-button-ui-ux-png-image_6322239.png" alt="Home button">
+                    </button>
+                </div>
+        <!-- Content box for the main text -->
+        <div class="content-box">
+            <p>KANGAR: Sebaik melangkah ke Sekolah Kebangsaan (SK) Seri Indera, pasti timbul persoalan
+                mengenai papan tanda 'Seri Indera Mall' yang kelihatan seperti pasar raya di dalam sekolah itu. 'Seri
+                Indera Mall' merupakan satu konsep kerjasama antara pihak pentadbir, kakitangan sekolah dengan
+                murid untuk mewujudkan suasana selesa, santai dan kondusif kepada semua warga sekolah. Pihak
+                sekolah melaksanakan program ini sebagai satu inovasi dalam menunaikan tanggungjawab
+                pembelajaran dan pembangunan intelek serta kemahiran murid.
+                'Seri Indera Mall' diwujudkan untuk menonjolkan ciri kebitaraan atau keunikan diri murid yang
+                tidak hanya tertumpu kepada akademik, beritahu Guru Besar SK Seri Indera, Nor Sharmila Shaari.
+                Katanya lagi, idea untuk menghasilkan Seri Indera Mall ini bermula setelah Pengarah Pendidikan                              
+                </p>
+        </div>
+    </div>
+    
+    <!-- Main content container for word categories and input table -->
+    <div class="main-container">
+        <p class="quote-text">Berdasarkan petikan di atas, sila cari</p>
+    
+        <!-- Box for word categories -->
+        <div class="word-categories">
+            4 Kata Majmuk Mantap<br>
+        </div>
+    
+        <!-- Table for user input -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Jenis morfologi</th>
+                    <th>Jawapan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Kata Majmuk Mantap</td>
+                    <td><input type="text" name="Kata_majmuk"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" name="Kata_majmuk2"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" name="Kata_majmuk3"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="text" name="Kata_majmuk4"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Container for the bottom navigation -->
+    <div class="main-container">
+        <div class="table-and-image-container"></div>
+    </div>
+    
+    <!-- Bottom navigation buttons -->
+    <div class="bottom">      
+        <button onclick="window.location.href='./question2.html'"><img src="left-button-8126900-6507164.png" alt="Arrow"></button> 
+        <button onclick="calculateScore()"><img src="1000_F_43842298_lpP3vQZfwgpzO0W6ycvcBIGLpHXL7zzj-removebg-preview.png" alt="Submit"></button>
+        <button onclick="window.location.href='./question4.html'"><img src="button-continue-button-3d-illustration_115990-3422-removebg-preview.png" alt="Next"></button>
+    </div>
+    
+</body>
+<script>
+// Function to open the sidebar
+function openSidebar() {
+    // Set the right property of the sidebar to 0 to make it visible
+    document.querySelector('.sidebar').style.right = '0';
+    // Display the overlay
+    document.querySelector('.overlay').style.display = 'block';
+}
+
+// Function to close the sidebar
+function closeSidebar() {
+    // Select the sidebar and overlay elements
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+
+    // Hide the sidebar by moving it to the right (off-screen)
+    sidebar.style.right = '-500px';
+    // Hide the overlay
+    overlay.style.display = 'none';
+}
+
+// Function to calculate the user's score and trigger firework animation
+function calculateScore() {
+    // Get user inputs
+    const kataMajmukInput = document.getElementsByName("Kata_majmuk")[0].value.toLowerCase();
+    const kataMajmuk2Input = document.getElementsByName("Kata_majmuk2")[0].value.toLowerCase();
+    const kataMajmuk3Input = document.getElementsByName("Kata_majmuk3")[0].value.toLowerCase();
+    const kataMajmuk4Input = document.getElementsByName("Kata_majmuk4")[0].value.toLowerCase();
+
+    // Define correct answers
+    const kataMajmukAnswers = ["kerjasama", "kakitangan", "beritahu", "tanggungjawab", "antarabangsa"];
+    // Initialize user's score
+    let score = 0;
+    let num = 0;
+
+    // Check and update score for Kata Majmuk
+    if (kataMajmukAnswers.includes(kataMajmukInput)) {
+        score++;
+        document.getElementsByName("Kata_majmuk")[0].style.backgroundColor = 'green';
+    } else {
+        document.getElementsByName("Kata_majmuk")[0].style.backgroundColor = 'red';
+    }
+    num++;
+
+    // Check and update score for Kata Majmuk
+    if (kataMajmukAnswers.includes(kataMajmuk2Input)) {
+        score++;
+        document.getElementsByName("Kata_majmuk2")[0].style.backgroundColor = 'green';
+    } else {
+        document.getElementsByName("Kata_majmuk2")[0].style.backgroundColor = 'red';
+    }
+    num++;
+
+    // Check and update score for Akronim
+    if (kataMajmukAnswers.includes(kataMajmuk3Input)) {
+        score++;
+        document.getElementsByName("Kata_majmuk3")[0].style.backgroundColor = 'green';
+    } else {
+        document.getElementsByName("Kata_majmuk3")[0].style.backgroundColor = 'red';
+    }
+    num++;
+
+    // Check and update score for Akronim
+    if (kataMajmukAnswers.includes(kataMajmuk4Input)) {
+        score++;
+        document.getElementsByName("Kata_majmuk4")[0].style.backgroundColor = 'green';
+    } else {
+        document.getElementsByName("Kata_majmuk4")[0].style.backgroundColor = 'red';
+    }
+    num++;
+
+    // Check for repetition
+    const userInputArray = [kataMajmukInput, kataMajmuk2Input, kataMajmuk3Input, kataMajmuk4Input];
+    const uniqueInputs = new Set(userInputArray);
+
+    // Display the result or an error message in a pop-up box
+    if (uniqueInputs.size === userInputArray.length) {
+        alert("You scored " + score + "/" + num + " for this exercise.");
+    } else {
+        alert("Jangan tulis jawapan yang sama.");
+    }
+}
+</script>
+</html>
