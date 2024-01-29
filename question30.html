@@ -288,23 +288,22 @@
                 </ul>
             </div>
         </div>
-                        <!-- Return to Main Page button -->
-                        <div class="title-button">
-                            <button onclick="window.location.href='./question_set.html'">
-                                <img src="pngtree-home-button-ui-ux-png-image_6322239.png" alt="Home button">
-                            </button>
-                        </div>
+        <!-- Return to Main Page button -->
+        <div class="title-button">
+            <button onclick="window.location.href='./question_set.html'">
+                    <img src="pngtree-home-button-ui-ux-png-image_6322239.png" alt="Home button">
+            </button>
+        </div>
         <!-- Content box for the main text -->
         <div class="content-box">
-            <p>Ruang bagi golongan remaja menceburi bidang keusahawanan ini amat luas.
-                Bidang keusahawanan ialah bidang yang perlu diterokai oleh kebanyakan remaja. Remaja
-                yang melanjutkan pengajian di Institut Pengajian Tinggi juga boleh menceburi bidang
-                keusahawanan walaupun masih bergelar pelajar. Dunia sekarang yang semakin moden
-                dan sangat mencabar menuntut para remaja supaya berdikari dan berdaya kreatif.
-                Keusahawanan dan perniagaan harus dijadikan satu daripada kerjaya pilihan dalam
-                kalangan remaja supaya kebergantungan terhadap pasaran kerjaya makan gaji dapat
-                dikurangkan dan seterusnya mengurangkan kadar pengangguran dalam kalangan
-                masyarakat.                
+            <p>Ruang bagi golongan remaja menceburi bidang keusahawanan ini amat luas. Bidang
+                keusahawanan ialah bidang yang perlu diterokai oleh kebanyakan remaja. Remaja yang
+                melanjutkan pengajian di Institusi Pengajian Tinggi juga boleh menceburi bidang
+                keusahawanan walaupun masih bergelar pelajar. Dunia sekarang yang semakin moden dan
+                sangat mencabar menuntut para remaja supaya berdikari dan berdaya kreatif. Keusahawanan
+                dan perniagaan harus dijadikan satu daripada kerjaya pilihan dalam kalangan remaja supaya
+                kebergantungan terhadap pasaran kerjaya makan gaji dapat dikurangkan dan seterusnya
+                mengurangkan kadar pengangguran dalam masyarakat.                                
                 </p>
         </div>
     </div>
@@ -359,84 +358,79 @@
     
 </body>
 <script>
-    // Function to open the sidebar
-    function openSidebar() {
-        // Set the right property of the sidebar to 0 to make it visible
-        document.querySelector('.sidebar').style.right = '0';
-        // Display the overlay
-        document.querySelector('.overlay').style.display = 'block';
+// Function to open the sidebar
+function openSidebar() {
+    // Set the right property of the sidebar to 0 to make it visible
+    document.querySelector('.sidebar').style.right = '0';
+    // Display the overlay
+    document.querySelector('.overlay').style.display = 'block';
+}
+
+// Function to close the sidebar
+function closeSidebar() {
+    // Select the sidebar and overlay elements
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+
+    // Hide the sidebar by moving it to the right (off-screen)
+    sidebar.style.right = '-500px';
+    // Hide the overlay
+    overlay.style.display = 'none';
+}
+
+// Function to calculate the user's score
+function calculateScore() {
+    // Get user inputs
+    const katapenguatInput = document.getElementsByName("Kata_penguat")[0].value.toLowerCase();
+    const katabantuInput = document.getElementsByName("Kata_bantu")[0].value.toLowerCase();
+    const katabilanganInput = document.getElementsByName("Kata_bilangan")[0].value.toLowerCase();
+
+    // Define correct answers
+    const katapenguatAnswers = ["amat","sangat", "semakin"];
+    const katabantuAnswers = ["perlu", "masih", "boleh", "harus", "dapat"];
+    const katabilanganAnswers = ["kebanyakan", "para", "satu"];
+
+    // Initialize user's score
+    let score = 0;
+    let num = 0;
+
+    // Check and update score for Kata Majmuk
+    if (katapenguatAnswers.includes(katapenguatInput)) {
+        score++;
+        document.getElementsByName("Kata_penguat")[0].style.backgroundColor = 'green';
+    } else {
+        document.getElementsByName("Kata_penguat")[0].style.backgroundColor = 'red';
     }
+    num++;
 
-    // Function to close the sidebar
-    function closeSidebar() {
-        // Select the sidebar and overlay elements
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.overlay');
-        
-        // Hide the sidebar by moving it to the right (off-screen)
-        sidebar.style.right = '-500px';
-        // Hide the overlay
-        overlay.style.display = 'none';
+    // Check and update score for Kata Majmuk
+    if (katabantuAnswers.includes(katabantuInput)) {
+        score++;
+        document.getElementsByName("Kata_bantu")[0].style.backgroundColor = 'green';
+    } else {
+        document.getElementsByName("Kata_bantu")[0].style.backgroundColor = 'red';
     }
+    num++;
 
-    // Function to calculate the user's score
-    function calculateScore() {
-        // Get user inputs
-        const kataPenguatInput = document.getElementsByName("Kata_penguat")[0].value.toLowerCase();
-        const kataBantuInput = document.getElementsByName("Kata_bantu")[0].value.toLowerCase();
-        const kataBilanganInput = document.getElementsByName("Kata_bilangan")[0].value.toLowerCase();
-
-        // Define correct answers
-        const kataPenguatAnswers = ["amat", "sangat", "semakin"];
-        const kataBantuAnswers = ["perlu", "masih", "boleh", "harus", "dapat"];
-        const kataBilanganAnswers = ["kebanyakan", "para", "satu"];
-        
-        // Initialize user's score
-        let score = 0;
-        let num = 0;
-
-        // Check and update score for Kata Penguat
-        if (kataPenguatAnswers.includes(kataPenguatInput)) {
-            score++;
-        }
-        num++;
-
-        // Check and update score for Kata Bantu
-        if (kataBantuAnswers.includes(kataBantuInput)) {
-            score++;
-        }
-        num++;
-
-        // Check and update score for Kata Bilangan
-        if (kataBilanganAnswers.includes(kataBilanganInput)) {
-            score++;
-        }
-        num++;
-
-        // Check for repetition
-        const userInputArray = [kataPenguatInput, kataBantuInput, kataBilanganInput];
-        const uniqueInputs = new Set(userInputArray);
-
-        // Display the result or an error message in a pop-up box
-        if (uniqueInputs.size === userInputArray.length) {
-            alert("You scored " + score + "/" + num + " for this exercise.");
-
-            // Change row color based on the score
-            const tableRows = document.querySelectorAll("tbody tr");
-
-            tableRows.forEach((row, index) => {
-                const cell = row.cells[1]; // Assuming the score is in the second column
-
-                if (index < score) {
-                    cell.style.backgroundColor = 'green';
-                } else {
-                    cell.style.backgroundColor = 'red';
-                }
-            });
-        } else {
-            alert("Jangan tulis jawapan yang sama.");
-        }
+    // Check and update score for Akronim
+    if (katabilanganAnswers.includes(katabilanganInput)) {
+        score++;
+        document.getElementsByName("Kata_bilangan")[0].style.backgroundColor = 'green';
+    } else {
+        document.getElementsByName("Kata_bilangan")[0].style.backgroundColor = 'red';
     }
+    num++;
+
+    // Check for repetition
+    const userInputArray = [katapenguatInput, katabantuInput, katabilanganInput];
+    const uniqueInputs = new Set(userInputArray);
+
+    // Display the result or an error message in a pop-up box
+    if (uniqueInputs.size === userInputArray.length) {
+        alert("You scored " + score + "/" + num + " for this exercise.");
+    } else {
+        alert("Jangan tulis jawapan yang sama.");
+    }
+}
 </script>
-</body>
 </html>
